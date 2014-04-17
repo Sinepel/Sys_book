@@ -3,7 +3,7 @@
     <head prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#">
         
         <meta charset="UTF-8">
-        <title>SSH - sans mot de passe | Administration Système</title>
+        <title>Interdire Root SSH | Administration Système</title>
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="robots" content="index, follow">
@@ -13,13 +13,11 @@
         <meta name="generator" content="www.gitbook.io">
 
         
-        <link rel="next" href="../transfert/ncftpget.html" />
         
-        
-        <link rel="prev" href="../transfert/scp.html" />
+        <link rel="prev" href="../securite/fail2ban.html" />
         
 
-        <meta property="og:title" content="SSH - sans mot de passe | Administration Système">
+        <meta property="og:title" content="Interdire Root SSH | Administration Système">
         <meta property="og:site_name" content="Administration Système">
         <meta property="og:type" content="book">
         <meta property="og:locale" content="en_US">
@@ -36,7 +34,7 @@
     </head>
     <body>
         
-    <div class="book"  data-level="1.3" data-basepath=".." data-revision="1397721158567">
+    <div class="book"  data-level="3.2" data-basepath=".." data-revision="1397721158567">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -167,7 +165,7 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="book-progress">
     <div class="bar">
-        <div class="inner" style="width: 40%;min-width: 30%;"></div>
+        <div class="inner" style="width: 100%;min-width: 90%;"></div>
     </div>
     <div class="chapters">
     
@@ -181,63 +179,52 @@
     
         <a href="../transfert/ssh_mdp.html" title="SSH - sans mot de passe" class="chapter done " data-progress="1.3" style="left: 40%;"></a>
     
-        <a href="../transfert/ncftpget.html" title="ncFTPget" class="chapter  " data-progress="1.4" style="left: 50%;"></a>
+        <a href="../transfert/ncftpget.html" title="ncFTPget" class="chapter done " data-progress="1.4" style="left: 50%;"></a>
     
-        <a href="../backup/README.html" title="Backup" class="chapter  new-chapter" data-progress="2" style="left: 60%;"></a>
+        <a href="../backup/README.html" title="Backup" class="chapter done new-chapter" data-progress="2" style="left: 60%;"></a>
     
-        <a href="../backup/automysqlbackup.html" title="AutoMySQLBackup" class="chapter  " data-progress="2.1" style="left: 70%;"></a>
+        <a href="../backup/automysqlbackup.html" title="AutoMySQLBackup" class="chapter done " data-progress="2.1" style="left: 70%;"></a>
     
-        <a href="../securite/README.html" title="Sécurité" class="chapter  new-chapter" data-progress="3" style="left: 80%;"></a>
+        <a href="../securite/README.html" title="Sécurité" class="chapter done new-chapter" data-progress="3" style="left: 80%;"></a>
     
-        <a href="../securite/fail2ban.html" title="Fail2Ban" class="chapter  " data-progress="3.1" style="left: 90%;"></a>
+        <a href="../securite/fail2ban.html" title="Fail2Ban" class="chapter done " data-progress="3.1" style="left: 90%;"></a>
     
-        <a href="../securite/noRootSSH.html" title="Interdire Root SSH" class="chapter  " data-progress="3.2" style="left: 100%;"></a>
+        <a href="../securite/noRootSSH.html" title="Interdire Root SSH" class="chapter done " data-progress="3.2" style="left: 100%;"></a>
     
     </div>
 </div>
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_8">
+                    <section class="normal" id="section-gitbook_5">
                     
-                        <h1 id="se-connecter-en-ssh-sans-demande-de-mot-de-passe">Se connecter en ssh sans demande de mot de passe</h1>
-<p>J&#39;ai une machine (A), avec un compte &quot;benjamin&quot; à partir de laquelle je souhaite me connecter en root sur une autre machine (B) sans demande de mot de passe.</p>
-<h2 id="sur-la-machine-a-en-utilisateur-benjamin-">Sur la machine A (en utilisateur benjamin) :</h2>
-<pre><code>ssh<span class="hljs-attribute">-keygen</span> <span class="hljs-attribute">-t</span> rsa, puis <span class="hljs-number">3</span> fois Entrée
-</code></pre><p>Cette commande me génère une clé publique et une clé privée (dans l&#39;ordre, id_rsa.pub et id_rsa) dans le dossier /home/benjamin/.ssh
-Ensuite, il faut copier la clé publique (id_rsa.pub) dans un fichier authorized_keys dans le dossier /root/.ssh de la machine B.</p>
-<h2 id="sur-la-machine-b-">Sur la machine B :</h2>
-<pre><code><span class="hljs-built_in">sudo</span> mkdir /root/.ssh
-</code></pre><p>Créé le dossier /root/.ssh</p>
-<h2 id="sur-la-machine-a-">Sur la machine A :</h2>
-<pre><code>scp /home/benjamin/.ssh/id_rsa.pub <span class="hljs-number">192.168</span>.<span class="hljs-number">1.4</span><span class="hljs-symbol">:/root/</span>.ssh/authorized_keys
-</code></pre><p>En supposant que l&#39;adresse IP de la machine B soit 192.168.1.4.
-Il faut, uniquement cette fois, taper le mot de passe root de la machine B. Cette commande copie le fichier /home/benjamin/.ssh/id_rsa.pub dans le fichier /root/.ssh/authorized_keys de la machine B (même si ce fichier n&#39;existe pas).
-Toujours sur la machine A (en utilisateur benjamin) :</p>
-<pre><code><span class="hljs-title">ssh</span> root@<span class="hljs-number">192.168.1.4</span> (puis confirmer avec <span class="hljs-built_in">yes</span>)
-</code></pre><p>Plus aucun mot de passe ne sera demandé.
-Le fichier /home/benjamin/.ssh/known_hosts contient les &#39;identifiants&#39; du pc sur lequel on a voulu se connecter.</p>
-<p>Résumé :</p>
-<blockquote>
-<ul>
-<li>Je génère une clé publique ssh avec le compte benjamin sur la machine A,</li>
-<li>je la copie sur la machine B dans le fichier /root/.ssh/authorized_keys (si je veux avoir accès au compte root sans mot de passe),</li>
-<li>à partir de la machine A (avec le compte benjamin) je me connecte en ssh sur la machine B (ssh root@adresse_ip_machineB)</li>
-<li>il se créé donc un fichier /home/benjamin/.ssh/known_hosts contenant l&#39;identité de la machine B.</li>
-</ul>
-</blockquote>
-<hr>
-<p>Note : Pour améliorer la sécurité de ces connexions par clé RSA, nous pouvons restreindre l&#39;utilisation de la clé d&#39;authentification à l&#39;adresse IP de la machine A en ajoutant from=&quot;&quot; devant la clé dans le fichier authorized_keys.
-Ce dernier ressemblera donc à ceci :</p>
-<p>from=&quot;192.168.1.2&quot; ssh-rsa AB3NzaC1yc2EAzYABIwAb[...]</p>
-<hr>
-<p>Note 2 : Une fois que nos clés publiques/privées ont été générées sur la machine A (étape 1), il est possible &quot;d&#39;<strong>automatiser</strong>&quot; tout le reste avec une seule commande : <strong>ssh-copy-id</strong>
-Très simplement, sur la machine A, vous n&#39;avez qu&#39;à taper :</p>
-<pre><code>ssh-<span class="hljs-keyword">copy</span>-<span class="hljs-property">id</span> root@<span class="hljs-number">192.168</span><span class="hljs-number">.1</span><span class="hljs-number">.4</span> 
-</code></pre><p>(pour reprendre notre exemple). Cette commande se chargera de créer le répertoire .ssh et de remplir le fichier authorized_keys automatiquement sur la machine distante.</p>
-<p>Pour les connexions SSH sur un port autre que le port 22, il faut lancer la commande ssh-copy-id &quot;-p 2224 root@192.168.1.4&quot; Utilisez cette procédure avec prudence, en particulier avec les comptes root.
-Laisser un accès libre à une machine en root est un manque de sécurité évident, malgré toutes les précautions préalables.</p>
-
+                        <h1 id="interdire-le-ssh-de-root">Interdire le ssh de root</h1>
+<h2 id="s-curiser-son-serveur-en-interdisant-la-connexion-de-l-utilisateur-root">Sécuriser son serveur en interdisant la connexion de l&#39;utilisateur root</h2>
+<p>La première chose à faire est de créer un utilisateur qui pourra se connecter. Débile comme remarque ? Un âne averti en vaut deux ;)</p>
+<p>Donc la commande de création de mon utilisateur est :</p>
+<pre><code>root<span class="hljs-variable">@home</span><span class="hljs-symbol">:~</span><span class="hljs-comment"># useradd -m -d /home/monutilisateurtropbien/ -s /bin/bash monutilisateurtropbien</span>
+</code></pre><p>Ensuite je change le mot de passe de monutilisateurtropbien :</p>
+<pre><code>root@r16721:~<span class="hljs-comment"># passwd monutilisateurtropbien</span>
+Enter <span class="hljs-built_in">new</span> UNIX password:
+Retype <span class="hljs-built_in">new</span> UNIX password:
+passwd : le mot de passe <span class="hljs-operator">a</span> été mis à jour avec succès
+</code></pre><p><strong>VÉRIFIEZ</strong> que vous pouvez bien vous connecter en tant que <strong>monutilisateurtropbien</strong>.</p>
+<p>Maintenant, il ne reste plus qu&#39;à configurer le démon ssh pour qu&#39;il n&#39;accepte plus l&#39;utilisateur root :</p>
+<h3 id="interdire-le-login-de-root-via-ssh">Interdire le login de root via ssh</h3>
+<p>Édition du fichier de configuration de sshd :</p>
+<pre><code>root<span class="hljs-variable">@home</span><span class="hljs-symbol">:~</span><span class="hljs-comment"># vi /etc/ssh/sshd_config</span>
+</code></pre><p>Remplacer :</p>
+<pre><code>PermitRootLogin <span class="hljs-literal">yes</span>
+</code></pre><p>Par: </p>
+<pre><code>PermitRootLogin <span class="hljs-keyword">no</span>
+</code></pre><p>On redémarre le démon :</p>
+<pre><code>root<span class="hljs-variable">@home</span><span class="hljs-symbol">:~</span><span class="hljs-comment"># /etc/init.d/ssh restart</span>
+</code></pre><h3 id="autoriser-le-login-de-root-via-ssh-uniquement-via-une-cl-">Autoriser le login de root via ssh uniquement via une clé</h3>
+<p>Vous pouvez aussi autoriser le login root uniquement à l&#39;aide d&#39;une clé ssh avec la directive suivante dans le fichier /etc/ssh/sshd_config :</p>
+<pre><code>PermitRootLogin <span class="hljs-keyword">without</span>-password
+</code></pre><p>Encore une fois pour que les modifications soient prises en compte il faut redémarrer le démon sshd :</p>
+<pre><code>root<span class="hljs-variable">@home</span><span class="hljs-symbol">:~</span><span class="hljs-comment"># /etc/init.d/ssh restart</span>
+</code></pre>
                     
                     </section>
                 
@@ -246,10 +233,8 @@ Laisser un accès libre à une machine en root est un manque de sécurité évid
         </div>
 
         
-        <a href="../transfert/scp.html" class="navigation navigation-prev"><i class="fa fa-angle-left"></i></a>
+        <a href="../securite/fail2ban.html" class="navigation navigation-prev"><i class="fa fa-angle-left"></i></a>
         
-        
-        <a href="../transfert/ncftpget.html" class="navigation navigation-next"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
