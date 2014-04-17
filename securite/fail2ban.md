@@ -23,5 +23,21 @@ Shell
 
 	apt-get install fail2ban
 
-A suivre.
+## Protection contre les attaques "brute force" SSH ##
+
+Un exemple étant toujours plus parlant, nous allons configurer notre Fail2Ban pour bloquer automatiquement les adresses IP des machines essayant des attaques de type "brute force" sur notre port SSH (cette attaque est à la portée de n'importe quel "neuneu". On trouve de très bon tutoriaux sur le sujet sur le net).
+
+Si une machine cliente échoue 3 fois de suite lors de la saisie du couple login/password sur le serveur SSH alors on bloque l'accès au port TCP/SSH pendant 15 minutes. On analyse pour cela le fichier de log **/var/log/auth.log** en lui appliquant le filtre /etc/fail2ban/filter.d/sshd.conf puis, si nécessaire, l'action **/etc/fail2ban/action.d/iptables.conf**. La définition de cette prison (jail) est à faire dans le fichier **/etc/fail2ban/jail.conf**:
+
+	# SSH
+	# 3 retry ? > Ban for 15 minutes
+	 
+	[ssh]
+	enabled = true
+	port = ssh
+	filter = sshd
+	action = iptables[name=SSH, port=ssh, protocol=tcp]
+	logpath = /var/log/auth.log
+	maxretry = 3
+	bantime = 900
 

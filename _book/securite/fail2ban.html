@@ -36,7 +36,7 @@
     </head>
     <body>
         
-    <div class="book"  data-level="3.1" data-basepath=".." data-revision="1397721158567">
+    <div class="book"  data-level="3.1" data-basepath=".." data-revision="1397736749383">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -215,8 +215,21 @@
 <p>On commence par installer Fail2Ban sur son système. Il se trouve dans la grande majorité des distributions GNU/Linux et BSD. par exemple pour l&#39;installer sur une machine Debian 6, il suffit de saisir la commande suivante (en root ou bien précédée d&#39;un sudo):
 Shell</p>
 <pre><code>apt-<span class="hljs-keyword">get</span> install fail2ban
-</code></pre><p>A suivre.</p>
+</code></pre><h2 id="protection-contre-les-attaques-brute-force-ssh">Protection contre les attaques &quot;brute force&quot; SSH</h2>
+<p>Un exemple étant toujours plus parlant, nous allons configurer notre Fail2Ban pour bloquer automatiquement les adresses IP des machines essayant des attaques de type &quot;brute force&quot; sur notre port SSH (cette attaque est à la portée de n&#39;importe quel &quot;neuneu&quot;. On trouve de très bon tutoriaux sur le sujet sur le net).</p>
+<p>Si une machine cliente échoue 3 fois de suite lors de la saisie du couple login/password sur le serveur SSH alors on bloque l&#39;accès au port TCP/SSH pendant 15 minutes. On analyse pour cela le fichier de log <strong>/var/log/auth.log</strong> en lui appliquant le filtre /etc/fail2ban/filter.d/sshd.conf puis, si nécessaire, l&#39;action <strong>/etc/fail2ban/action.d/iptables.conf</strong>. La définition de cette prison (jail) est à faire dans le fichier <strong>/etc/fail2ban/jail.conf</strong>:</p>
+<pre><code><span class="hljs-comment"># SSH</span>
+<span class="hljs-comment"># 3 retry ? &gt; Ban for 15 minutes</span>
 
+[ssh]
+<span class="hljs-constant">enabled</span> = true
+<span class="hljs-constant">port</span> = ssh
+<span class="hljs-constant">filter</span> = sshd
+<span class="hljs-constant">action</span> = iptables[name=SSH, port=ssh, protocol=tcp]
+<span class="hljs-constant">logpath</span> = /var/log/auth.log
+<span class="hljs-constant">maxretry</span> = 3
+<span class="hljs-constant">bantime</span> = 900
+</code></pre>
                     
                     </section>
                 
