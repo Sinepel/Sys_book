@@ -1,256 +1,455 @@
 <!DOCTYPE HTML>
-<html lang="en-US">
-    <head prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#">
+<html lang="en-US" >
+    
+    <head>
         
         <meta charset="UTF-8">
         <title>Interdire Root SSH | Administration Système</title>
-
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <meta name="robots" content="index, follow">
-        <meta name="author" content="">
-        <meta name="description" content="[![Screen](https://github.com/Sinepel/Sys_book/blob/master/images/Terminal.png?raw=true)](https://github.com/Sinepel/Sys_book/blob/master/images/Terminal.png?raw=true)">
-        <meta name="keywords" content="gitbook,github" >
-        <meta name="generator" content="www.gitbook.io">
-
-        
-        <link rel="next" href="../securite/detectRootkit.html" />
-        
-        
-        <link rel="prev" href="../securite/fail2ban.html" />
-        
-
-        <meta property="og:title" content="Interdire Root SSH | Administration Système">
-        <meta property="og:site_name" content="Administration Système">
-        <meta property="og:type" content="book">
-        <meta property="og:locale" content="en_US">
-
-        <meta property="book:author" content="https://github.com/">
-        <meta property="book:tag" content="GitBook">
-
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 1.1.0">
+        <meta name="HandheldFriendly" content="true"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    
+    
+    
+    <link rel="next" href="../securite/detectRootkit.html" />
+    
+    
+    <link rel="prev" href="../securite/fail2ban.html" />
+    
 
-        <link rel="shortcut icon" href="..\gitbook/images/favicon.ico" type="image/x-icon">
         
     </head>
     <body>
         
-    <div class="book"  data-level="3.2" data-basepath=".." data-revision="1412144399079">
-    <div class="book-header">
-    <!-- Actions Left -->
-    
-    <a href="#" class="btn pull-left toggle-summary"><i class="fa fa-align-justify"></i></a>
-    <a href="#" class="btn pull-left toggle-search"><i class="fa fa-search"></i></a>
+        
+<link rel="stylesheet" href="../gitbook/style.css">
 
-    <!-- Actions Right -->
-    <a href="#" target="_blank" class="btn pull-right" data-sharing="google-plus"><i class="fa fa-google-plus"></i></a>
-    <a href="#" target="_blank" class="btn pull-right" data-sharing="facebook"><i class="fa fa-facebook"></i></a>
-    <a href="#" target="_blank" class="btn pull-right" data-sharing="twitter"><i class="fa fa-twitter"></i></a>
 
+        
+    <div class="book" data-level="3.2" data-basepath=".." data-revision="1412145932147">
     
 
-    <!-- Title -->
-    <h1><a href="../" >Administration Système</a></h1>
-</div>
-
-    <div class="book-summary">
+<div class="book-summary">
     <div class="book-search">
-        <input type="text" placeholder="Search" class="form-control" />
+        <input type="text" placeholder="Type to search" class="form-control" />
     </div>
     <ul class="summary">
         
-        <li data-level="0" data-path="index.html">
-            <a href="../"><i class="fa fa-check"></i> Introduction</a>
+    	
+    	
+    	
+
+        
+
+        
+    
+        
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                        <i class="fa fa-check"></i>
+                        
+                         Introduction
+                    </a>
+                
+            
+            
         </li>
+    
         
-            <li  data-level="1" data-path="transfert/README.html">
+        <li class="chapter " data-level="1" data-path="transfert/README.html">
+            
                 
-                <a href="../transfert/README.html">
-                    <i class="fa fa-check"></i> <b>1.</b> Transfert
-                </a>
+                    <a href="../transfert/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                         Transfert
+                    </a>
                 
+            
+            
+            <ul class="articles">
                 
-                <ul class="articles">
-                    
-                        <li  data-level="1.1" data-path="transfert/scp.html">
-                            
-                            <a href="../transfert/scp.html">
-                                <i class="fa fa-check"></i> <b>1.1.</b> SCP
-                            </a>
-                            
-                        </li>
-                    
-                        <li  data-level="1.2" data-path="transfert/ssh_mdp.html">
-                            
-                            <a href="../transfert/ssh_mdp.html">
-                                <i class="fa fa-check"></i> <b>1.2.</b> SSH - sans mot de passe
-                            </a>
-                            
-                        </li>
-                    
-                        <li  data-level="1.3" data-path="transfert/ncftpget.html">
-                            
-                            <a href="../transfert/ncftpget.html">
-                                <i class="fa fa-check"></i> <b>1.3.</b> ncFTPget
-                            </a>
-                            
-                        </li>
-                    
-                </ul>
-                
-            </li>
+    
         
-            <li  data-level="2" data-path="backup/README.html">
+        <li class="chapter " data-level="1.1" data-path="transfert/scp.html">
+            
                 
-                <a href="../backup/README.html">
-                    <i class="fa fa-check"></i> <b>2.</b> Backup
-                </a>
+                    <a href="../transfert/scp.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                         SCP
+                    </a>
                 
-                
-                <ul class="articles">
-                    
-                        <li  data-level="2.1" data-path="backup/automysqlbackup.html">
-                            
-                            <a href="../backup/automysqlbackup.html">
-                                <i class="fa fa-check"></i> <b>2.1.</b> AutoMySQLBackup
-                            </a>
-                            
-                        </li>
-                    
-                </ul>
-                
-            </li>
+            
+            
+        </li>
+    
         
-            <li  data-level="3" data-path="securite/README.html">
+        <li class="chapter " data-level="1.2" data-path="transfert/ssh_mdp.html">
+            
                 
-                <a href="../securite/README.html">
-                    <i class="fa fa-check"></i> <b>3.</b> Sécurité
-                </a>
+                    <a href="../transfert/ssh_mdp.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                         SSH - sans mot de passe
+                    </a>
                 
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.3" data-path="transfert/ncftpget.html">
+            
                 
-                <ul class="articles">
-                    
-                        <li  data-level="3.1" data-path="securite/fail2ban.html">
-                            
-                            <a href="../securite/fail2ban.html">
-                                <i class="fa fa-check"></i> <b>3.1.</b> Fail2Ban
-                            </a>
-                            
-                        </li>
-                    
-                        <li  data-level="3.2" data-path="securite/noRootSSH.html">
-                            
-                            <a href="../securite/noRootSSH.html">
-                                <i class="fa fa-check"></i> <b>3.2.</b> Interdire Root SSH
-                            </a>
-                            
-                        </li>
-                    
-                        <li  data-level="3.3" data-path="securite/detectRootkit.html">
-                            
-                            <a href="../securite/detectRootkit.html">
-                                <i class="fa fa-check"></i> <b>3.3.</b> Détection Rootkit
-                            </a>
-                            
-                        </li>
-                    
-                </ul>
+                    <a href="../transfert/ncftpget.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.</b>
+                        
+                         ncFTPget
+                    </a>
                 
-            </li>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2" data-path="backup/README.html">
+            
+                
+                    <a href="../backup/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                         Backup
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="2.1" data-path="backup/automysqlbackup.html">
+            
+                
+                    <a href="../backup/automysqlbackup.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                         AutoMySQLBackup
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3" data-path="securite/README.html">
+            
+                
+                    <a href="../securite/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                         Sécurité
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="3.1" data-path="securite/fail2ban.html">
+            
+                
+                    <a href="../securite/fail2ban.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                         Fail2Ban
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter active" data-level="3.2" data-path="securite/noRootSSH.html">
+            
+                
+                    <a href="../securite/noRootSSH.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                         Interdire Root SSH
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.3" data-path="securite/detectRootkit.html">
+            
+                
+                    <a href="../securite/detectRootkit.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                         Détection Rootkit
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4" data-path="bonnes_pratiques/README.html">
+            
+                
+                    <a href="../bonnes_pratiques/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                         Bonnes Pratiques
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="4.1" data-path="bonnes_pratiques/Installation_VPS.html">
+            
+                
+                    <a href="../bonnes_pratiques/Installation_VPS.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                         Installation d&#39;un VPS
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.2" data-path="bonnes_pratiques/new_dev.html">
+            
+                
+                    <a href="../bonnes_pratiques/new_dev.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                         Création DEV
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+        
+        <li class="divider"></li>
+        <li>
+            <a href="http://www.gitbook.io/" target="blank" class="gitbook-link">Published using GitBook</a>
+        </li>
         
     </ul>
 </div>
 
     <div class="book-body">
         <div class="body-inner">
-            <div class="page-wrapper" tabindex="-1">
-                <div class="book-progress">
-    <div class="bar">
-        <div class="inner" style="width: 90%;min-width: 80%;"></div>
+            <div class="book-header">
+    <!-- Actions Left -->
+    <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
+    <a href="#" class="btn pull-left toggle-search" aria-label="Toggle search"><i class="fa fa-search"></i></a>
+    
+    <div id="font-settings-wrapper" class="dropdown pull-left">
+        <a href="#" class="btn toggle-dropdown" aria-label="Toggle font settings"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+    <div class="dropdown-caret">
+        <span class="caret-outer"></span>
+        <span class="caret-inner"></span>
     </div>
-    <div class="chapters">
-    
-        <a href="../index.html" title="Introduction" class="chapter done new-chapter" data-progress="0" style="left: 0%;"></a>
-    
-        <a href="../transfert/README.html" title="Transfert" class="chapter done new-chapter" data-progress="1" style="left: 10%;"></a>
-    
-        <a href="../transfert/scp.html" title="SCP" class="chapter done " data-progress="1.1" style="left: 20%;"></a>
-    
-        <a href="../transfert/ssh_mdp.html" title="SSH - sans mot de passe" class="chapter done " data-progress="1.2" style="left: 30%;"></a>
-    
-        <a href="../transfert/ncftpget.html" title="ncFTPget" class="chapter done " data-progress="1.3" style="left: 40%;"></a>
-    
-        <a href="../backup/README.html" title="Backup" class="chapter done new-chapter" data-progress="2" style="left: 50%;"></a>
-    
-        <a href="../backup/automysqlbackup.html" title="AutoMySQLBackup" class="chapter done " data-progress="2.1" style="left: 60%;"></a>
-    
-        <a href="../securite/README.html" title="Sécurité" class="chapter done new-chapter" data-progress="3" style="left: 70%;"></a>
-    
-        <a href="../securite/fail2ban.html" title="Fail2Ban" class="chapter done " data-progress="3.1" style="left: 80%;"></a>
-    
-        <a href="../securite/noRootSSH.html" title="Interdire Root SSH" class="chapter done " data-progress="3.2" style="left: 90%;"></a>
-    
-        <a href="../securite/detectRootkit.html" title="Détection Rootkit" class="chapter  " data-progress="3.3" style="left: 100%;"></a>
-    
+
+    <div class="buttons">
+        <button type="button" id="reduce-font-size" class="button size-2">A</button>
+        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
+    </div>
+
+    <div class="buttons font-family-list">
+        <button type="button" data-font="0" class="button">Serif</button>
+        <button type="button" data-font="1" class="button">Sans</button>
+    </div>
+
+    <div class="buttons color-theme-list">
+        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">White</button>
+        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
+        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Night</button>
     </div>
 </div>
 
+    </div>
+
+    <!-- Actions Right -->
+    
+    <div class="dropdown pull-right">
+        <a href="#" class="btn toggle-dropdown" aria-label="Toggle share dropdown"><i class="fa fa-share-alt"></i>
+        </a>
+        <div class="dropdown-menu font-settings dropdown-left">
+            <div class="dropdown-caret">
+                <span class="caret-outer"></span>
+                <span class="caret-inner"></span>
+            </div>
+            <div class="buttons">
+                <button type="button" data-sharing="twitter" class="button">Twitter</button>
+                <button type="button" data-sharing="google-plus" class="button">Google</button>
+                <button type="button" data-sharing="facebook" class="button">Facebook</button>
+                <button type="button" data-sharing="weibo" class="button">Weibo</button>
+                <button type="button" data-sharing="instapaper" class="button">Instapaper</button>
+            </div>
+        </div>
+    </div>
+    
+
+    
+    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Share on Google Plus"><i class="fa fa-google-plus"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Share on Facebook"><i class="fa fa-facebook"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Share on Twitter"><i class="fa fa-twitter"></i></a>
+    
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >Administration Système</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1">
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_6">
+                
+                    <section class="normal" id="section-gitbook_10">
                     
                         <h1 id="interdire-le-ssh-de-root">Interdire le ssh de root</h1>
-<h2 id="s-curiser-son-serveur-en-interdisant-la-connexion-de-l-utilisateur-root">Sécuriser son serveur en interdisant la connexion de l&#39;utilisateur root</h2>
+<h2 id="scuriser-son-serveur-en-interdisant-la-connexion-de-lutilisateur-root">Sécuriser son serveur en interdisant la connexion de l&#39;utilisateur root</h2>
 <p>La première chose à faire est de créer un utilisateur qui pourra se connecter. Débile comme remarque ? Un âne averti en vaut deux ;)</p>
 <p>Donc la commande de création de mon utilisateur est :</p>
-<pre><code>root<span class="hljs-variable">@home</span><span class="hljs-symbol">:~</span><span class="hljs-comment"># useradd -m -d /home/monutilisateurtropbien/ -s /bin/bash monutilisateurtropbien</span>
+<pre><code>root@home:~# useradd -m -d /home/monutilisateurtropbien/ -s /bin/bash monutilisateurtropbien
 </code></pre><p>Ensuite je change le mot de passe de monutilisateurtropbien :</p>
-<pre><code>root@r16721:~<span class="hljs-comment"># passwd monutilisateurtropbien</span>
-Enter <span class="hljs-built_in">new</span> UNIX password:
-Retype <span class="hljs-built_in">new</span> UNIX password:
-passwd : le mot de passe <span class="hljs-operator">a</span> été mis à jour avec succès
+<pre><code>root@r16721:~# passwd monutilisateurtropbien
+Enter new UNIX password:
+Retype new UNIX password:
+passwd : le mot de passe a été mis à jour avec succès
 </code></pre><p><strong>VÉRIFIEZ</strong> que vous pouvez bien vous connecter en tant que <strong>monutilisateurtropbien</strong>.</p>
 <p>Maintenant, il ne reste plus qu&#39;à configurer le démon ssh pour qu&#39;il n&#39;accepte plus l&#39;utilisateur root :</p>
 <h3 id="interdire-le-login-de-root-via-ssh">Interdire le login de root via ssh</h3>
 <p>Édition du fichier de configuration de sshd :</p>
-<pre><code>root<span class="hljs-variable">@home</span><span class="hljs-symbol">:~</span><span class="hljs-comment"># vi /etc/ssh/sshd_config</span>
+<pre><code>root@home:~# vi /etc/ssh/sshd_config
 </code></pre><p>Remplacer :</p>
-<pre><code>PermitRootLogin <span class="hljs-literal">yes</span>
+<pre><code>PermitRootLogin yes
 </code></pre><p>Par: </p>
-<pre><code>PermitRootLogin <span class="hljs-keyword">no</span>
+<pre><code>PermitRootLogin no
 </code></pre><p>On redémarre le démon :</p>
-<pre><code>root<span class="hljs-variable">@home</span><span class="hljs-symbol">:~</span><span class="hljs-comment"># /etc/init.d/ssh restart</span>
-</code></pre><h3 id="autoriser-le-login-de-root-via-ssh-uniquement-via-une-cl-">Autoriser le login de root via ssh uniquement via une clé</h3>
+<pre><code>root@home:~# /etc/init.d/ssh restart
+</code></pre><h3 id="autoriser-le-login-de-root-via-ssh-uniquement-via-une-cl">Autoriser le login de root via ssh uniquement via une clé</h3>
 <p>Vous pouvez aussi autoriser le login root uniquement à l&#39;aide d&#39;une clé ssh avec la directive suivante dans le fichier /etc/ssh/sshd_config :</p>
-<pre><code>PermitRootLogin <span class="hljs-keyword">without</span>-password
+<pre><code>PermitRootLogin without-password
 </code></pre><p>Encore une fois pour que les modifications soient prises en compte il faut redémarrer le démon sshd :</p>
-<pre><code>root<span class="hljs-variable">@home</span><span class="hljs-symbol">:~</span><span class="hljs-comment"># /etc/init.d/ssh restart</span>
+<pre><code>root@home:~# /etc/init.d/ssh restart
 </code></pre>
                     
                     </section>
+                
                 
                 </div>
             </div>
         </div>
 
         
-        <a href="../securite/fail2ban.html" class="navigation navigation-prev"><i class="fa fa-angle-left"></i></a>
+        <a href="../securite/fail2ban.html" class="navigation navigation-prev " aria-label="Previous page: Fail2Ban"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../securite/detectRootkit.html" class="navigation navigation-next"><i class="fa fa-angle-right"></i></a>
+        <a href="../securite/detectRootkit.html" class="navigation navigation-next " aria-label="Next page: Détection Rootkit"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
 
         
-        <link rel="stylesheet" href="..\gitbook/style.css">
-        
-        
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/ace.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/mode-javascript.js"></script>
-        <script src="..\gitbook/jsrepl/jsrepl.js" id="jsrepl-script"></script>
-        <script src="..\gitbook/app.js"></script>
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="https://cdn.mathjax.org/mathjax/2.4-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-mathjax/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"fontSettings":{"theme":null,"family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
         
     </body>
+    
 </html>
