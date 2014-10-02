@@ -3,7 +3,7 @@
 ## Améliorations à venir :
 - Création de la BDD automatique
 - Envoyer les informations par mail
-- 
+
 ## Code :
 
 >     #!/bin/bash
