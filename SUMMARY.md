@@ -13,4 +13,6 @@
 * [Bonnes Pratiques](bonnes_pratiques/README.md)
 	* [Installation d'un VPS](bonnes_pratiques/Installation_VPS.md)
 	* [Création DEV](bonnes_pratiques/new_dev.md)
+* Scripts
+	* [Newsite](scripts/newsite.md)
 
