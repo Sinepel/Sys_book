@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>Détection Rootkit | Administration Système</title>
+        <title>Newsite | Administration Système</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.1.0">
@@ -18,10 +18,6 @@
     
     
     
-    <link rel="next" href="../bonnes_pratiques/README.html" />
-    
-    
-    <link rel="prev" href="../securite/noRootSSH.html" />
     
 
         
@@ -33,7 +29,7 @@
 
 
         
-    <div class="book" data-level="3.3" data-basepath=".." data-revision="1412315322493">
+    <div class="book" data-level="5.1" data-basepath=".." data-revision="1412315322493">
     
 
 <div class="book-summary">
@@ -222,7 +218,7 @@
         </li>
     
         
-        <li class="chapter active" data-level="3.3" data-path="securite/detectRootkit.html">
+        <li class="chapter " data-level="3.3" data-path="securite/detectRootkit.html">
             
                 
                     <a href="../securite/detectRootkit.html">
@@ -306,7 +302,7 @@
                 
     
         
-        <li class="chapter " data-level="5.1" data-path="scripts/newsite.html">
+        <li class="chapter active" data-level="5.1" data-path="scripts/newsite.html">
             
                 
                     <a href="../scripts/newsite.html">
@@ -415,23 +411,54 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_9">
+                    <section class="normal" id="section-gitbook_8">
                     
-                        <h1 id="rkhunter">Rkhunter</h1>
-<p><strong>Rootkit Hunter</strong> est un programme de détection de rootkits. Vous pouvez l&#39;installer grâce à :</p>
-<pre><code>apt-get install rkhunter
-</code></pre><p>Il procédera à des détections journalières anti-rootkits et enverra des notifications par e-mail si nécessaire. Il est conseillé de l&#39;installer très tôt car il calcule l&#39;empreinte MD5 des programmes installés afin de détecter d&#39;éventuels changements. Editez /etc/default/rkhunter pour indiquer l&#39;adresse de notification et l&#39;exécution journalière :</p>
-<pre><code>vi /etc/default/rkhunter
+                        <h1 id="script-newsite">Script &quot;newsite&quot;</h1>
+<h2 id="amliorations--venir-">Améliorations à venir :</h2>
+<ul>
+<li>Création de la BDD automatique</li>
+<li>Envoyer les informations par mail</li>
+</ul>
+<blockquote>
+<pre><code>#!/bin/bash
+echo -e &quot;\n*** MDWEB - CREATION DE SITE ***\n&quot;
+echo &quot;Adresse du site (sans http://) : &quot;
+read adresseSiteBrute
+adresseSiteUnderscoree=${adresseSiteBrute//[.]/_}
 
-REPORT_EMAIL=&quot;monitoring@test.com&quot;
-CRON_DAILY_RUN=&quot;yes&quot;
-</code></pre><p>En cas de fausses détections positives sur des répertoires ou fichiers existants et sains, éditez /etc/rkhunter.conf pour les ajouter à la liste des éléments autorisés.</p>
-<pre><code>vi /etc/rkhunter.conf
+echo &quot;&lt;VirtualHost *:80&gt;
+DocumentRoot /var/www/$adresseSiteUnderscoree/
+ServerName $adresseSiteBrute
+&lt;Directory /var/www/$adresseSiteUnderscoree/&gt;
+Options +Indexes +FollowSymLinks +MultiViews +Includes
+AllowOverride All
+Order allow,deny
+allow from all
+&lt;/Directory&gt;
+&lt;/VirtualHost&gt;&quot; /etc/apache2/sites-available/$adresseSiteBrute
+echo &quot;Création du VirtualHost [OK]&quot;
 
+mkdir /var/www/$adresseSiteUnderscoree
+chmod -R 770 /var/www/$adresseSiteUnderscoree
+chown -R www-data:www-data /var/www/$adresseSiteUnderscoree
 
-ALLOWHIDDENDIR=/dev/.udev
-ALLOWHIDDENDIR=/dev/.static
-</code></pre><p>Vous pouvez également utiliser chkrootkit qui est un équivalent.</p>
+a2ensite $adresseSiteBrute
+echo &quot;Activation du VirtualHost [OK]&quot;
+
+/etc/init.d/apache2 restart
+echo &quot;Redémarrage d&#39;Apache [OK]&quot;
+
+motDePasseFTP=$(cat /dev/urandom | tr -dc &#39;a-zA-Z0-9&#39; | fold -w 20 | head -n 1)
+#ftpasswd --passwd --name=$adresseSiteUnderscoree --home=/var/www/adresseSiteUnderscoree --shell=/bin/false --uid=33 --gid=33
+echo $motDePasseFTP | ftpasswd --stdin --passwd --name=$adresseSiteUnderscoree --home=/var/www/$adresseSiteUnderscoree --shell=/bin/false --uid=33 --gid=33 --file=/etc/proftpd/ftpd.passwd
+
+echo -e &quot;\nRécapitulatif :\n&quot;
+echo -e &quot;   Adresse du site :   http://$adresseSiteBrute\n&quot;
+echo -e &quot;   Serveur FTP :   $adresseSiteBrute&quot;
+echo -e &quot;   Utilisateur FTP :   $adresseSiteUnderscoree&quot;
+echo -e &quot;   Mot de passe FTP :  $motDePasseFTP\n&quot;
+echo -e &quot;   Répertoire :/var/www/$adresseSiteUnderscoree\n\n&quot;
+</code></pre></blockquote>
 
                     
                     </section>
@@ -442,10 +469,6 @@ ALLOWHIDDENDIR=/dev/.static
         </div>
 
         
-        <a href="../securite/noRootSSH.html" class="navigation navigation-prev " aria-label="Previous page: Interdire Root SSH"><i class="fa fa-angle-left"></i></a>
-        
-        
-        <a href="../bonnes_pratiques/README.html" class="navigation navigation-next " aria-label="Next page: Bonnes Pratiques"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
