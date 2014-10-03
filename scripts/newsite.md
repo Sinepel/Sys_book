@@ -4,6 +4,8 @@
 - Création de la BDD automatique
 - Envoyer les informations par mail
 
+## Code :
+
 >     #!/bin/bash
 >     echo -e "\n*** MDWEB - CREATION DE SITE ***\n"
 >     echo "Adresse du site (sans http://) : "
