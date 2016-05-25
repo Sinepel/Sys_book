@@ -7,6 +7,7 @@
 * [Backup](backup/README.md)
     * [AutoMySQLBackup](backup/automysqlbackup.md)
 * [Sécurité](securite/README.md)
+	* [.htaccess PHPMyAdmin](securite/htaccess_phpmyadmin.md)
 	* [Fail2Ban](securite/fail2ban.md)
 	* [Interdire Root SSH](securite/noRootSSH.md)
 	* [Détection Rootkit](securite/detectRootkit.md)
