@@ -1,4 +1,4 @@
-## Step Two — Secure your phpMyAdmin 
+##Secure your phpMyAdmin 
 
 Instance We were able to get our phpMyAdmin interface up and running fairly easily. However, we are not done yet. Because of its ubiquity, phpMyAdmin is a popular target for attackers. We need to secure the application to help prevent unauthorized use. One of the easiest way of doing this is to place a gateway in front of the entire application. We can do this using Apache's built-in `.htaccess` authentication and authorization functionalities. ### Configure Apache to Allow .htaccess Overrides First, we need to enable the use of `.htaccess` file overrides by editing our Apache configuration file. We will edit the linked file that has been placed in our Apache configuration directory:     sudo nano /etc/apache2/conf-available/phpmyadmin.conf We need to add an `AllowOverride All` directive within the `` section of the configuration file, like this:
 
