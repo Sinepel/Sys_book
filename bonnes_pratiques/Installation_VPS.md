@@ -8,6 +8,7 @@
 - PHP5
 - MySQL
 - PHPMyAdmin
+- ProFTPd
 - Script « Newsite »
 - PostFix
 ## Backup ##
