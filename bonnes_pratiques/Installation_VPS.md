@@ -3,21 +3,16 @@
 
 ----------
 
-## Installation du serveur Web ##
 - Apache2
 - PHP5
 - MySQL
 - PHPMyAdmin
+- Créer un .htaccess pour PHPMyAdmin
 - ProFTPd
 - Script « Newsite »
 - PostFix
-## Backup ##
 - AutoMySQLBackup
-- VEEAM (géré par OVH)
-## Sécurité ##
-- Créer utilisateur « dev » (le mettre dans le groupe www-data -> Group ID : 33)
+- Créer utilisateur « dev »
 - Interdire le « root » en SSH
 - Mettre le port SSH à « 30000 »
 - Installer Fail2Ban
-- Créer un .htaccess pour PHPMyAdmin
-- Installer « LogWatch » (récapitulatif des logs par Mail tous les matins)
